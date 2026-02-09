@@ -1,0 +1,72 @@
+Dokumentation Modul 300
+
+20 Infrastruktur
+
+    1. Read me
+        Arten von CLoud Computing:
+            -IaaS: Infrastructur as a Service ist wenn man seine VMs und Infrastruktur selber managed.
+            -PaaS: Platform as a Service ist wenn man die Maschine schon hat aber die Applikationen selber mitbringt.
+            -SaaS: Software as a Service ist wenn man nicht mal die Applikation selber mitbringt sondern auch diese schon aus der Cloud nimmt.
+            -CaaS: Container as a Service ist wenn man Container in der Cloud benutzt.
+
+        Dynamic Infrastructur-Platform:   
+            -Dynamic Infrastructur-Platform ist ein Service der Rechen-ressourcen virtuell bereitstellt. Z.B. CPU, Storage, networks und sie werden als VM dargestellt
+            -Damit Infrastructur as Code funktionieren kann müssen folgende Anforderungen erfüllt werden: 
+                -Porgrammierbar (API)
+                -On demand (schnell ressourcen erstellen und löschen)
+                -Selfservice (Ressourcen anpassen können)
+                -Anbieter flexibel wechseln (AWS, Azure...)
+            -Besispiele dafür sind:
+            -Public Cloud: 
+                -AWS 
+                -Azure 
+                -Digital Ocean 
+                -Google 
+                -exoscale
+            -Private Cloud: 
+                -Cloudstack 
+                -Openstack
+                -VMware vCloud
+            -Lokale Virtualisierung
+                -Oracle VirtualBox
+                -Hyper-V
+                -VMware Player
+            -Hyperkonvergente Systeme
+                -Rechner die die oben beschriebenen Eigenschaften in einer Hardware vereinen
+
+        Infrastructur as Code
+            IaC ist ein Paradigma (grundsätzliche Denkweise) zur Infrastruktur-automatisierung. 
+            Das heisst dass man konsistente und wiederholbare bereitstellung in Dateien zusammenfässt die man dann immer wieder ausrollen kann
+
+
+
+    2. Fragen
+     1. Was versteht man unter Cloud-Computing? 
+                Wenn man Programme und Virtuelle Maschinen nicht auf dem lokalen Rechner installiert hat sondern auf einem anderen auf den vom lokalen Rechner zugegriffen wird.
+
+     2. Was versteht man unter IaaS? 
+                IaaS ist wenn man als User schon vorhandene Dienste in einem System verwaltet aber immer noch für die Virtuellen Maschinen selbst zuständig ist.
+   
+     3. Was ist der Unterschied zwischen Infrastructur as Code und der manuellen Installation der VM? 
+                Es ist automatisiert und kann beliebig wiederholt werden. Ausserdem ist es besser Dokumentiert.
+   
+     4. Was wird mit Vagrant erzeugt?
+                VMs
+   
+     5. Welche Aussage stimmt? 
+                b) --> Vagrant erstellt virtuelle Maschinen, dabei werden mehrere HyperVisor und Cloud Umgebungen unterstützt.
+   
+     6. In welchen Bereich der Cloud Computing ist Vagrant einzuordnen? 
+                IaaS weil es VMs managed
+   
+     7. Welche Alternativen zu Vagrant gibt es? 
+                Lima, Packer Multipass oder virt-manager
+  
+     8. Wo speichert Vagrant seine Konfiguration? 
+                Vagrantfile
+    
+     9. Was bedeutet die Fehlermeldung "A Vagrant environment or target machine is required to run this command."? 
+                Dass in dem Verzeichnis in dem du bist keine VM ist.
+  
+     10. Bei welcher LPI Zertifizierung nützt mir das Vagrant Wissen? 
+                Für diverse Zeritfikate für Linux Dev
