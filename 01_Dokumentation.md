@@ -226,3 +226,24 @@ Dokumentation Modul 300
            
             -Danach kann man mit history sehen welche Commands bisher eingegeben wurden.
 ![History](History_.png)
+
+            -Mit dem folgenden Befehl sieht man die freigegebenen Ports:
+                -vagrant port
+![Port_SSH](Port_SSH.png)
+            
+            -Man kann hier sehen dass nur der SSH Port fregegeben ist
+            -Das heisst dass ich jetzt noch den Port 80 für Apache freigeben muss.
+            -Mit dem folgenden Command öffnet sich das Vagrantfile im VS Code und ich kann es ersetzen.    
+                -code vagrantfile
+            -Da kopiere ich den Code aus der Anleitung herein
+![Portweiterleitung](Portweiterleitung.png)
+            
+            -Damit das richtig geladen wird, muss ich noch die VM restarten mit folgenden Commands
+                -vagrant reload
+                -vagrant provision
+            -Und zum nochmal testen führe ich nochmal den folgenden Command aus
+                -vagrant port
+![Vagrantfile_Reload](Vagrantfile_reload.png)
+
+
+        
