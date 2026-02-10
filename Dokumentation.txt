@@ -32,7 +32,7 @@ Dokumentation Modul 300
         Im nächsten Schritt habe ich Vagrant installiert, um virtuelle Maschinen automatisiert bereitzustellen. Ich habe eine VM mit
         vagrant init ubuntu/xenial64
         initialisiert und mit
-            vagrant up
+        vagrant up
         gestartet. Der Zugriff auf die VM erfolgte über
         vagrant ssh.
         Die VM konnte ich mit
