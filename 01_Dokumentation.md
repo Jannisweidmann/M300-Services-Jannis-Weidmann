@@ -246,4 +246,30 @@ Dokumentation Modul 300
 ![Vagrantfile_Reload](Vagrantfile_reload.png)
 
 
+25 Sicherheit
+    1. Fragen
         
+        Firewall und Reverse Proxy
+
+            -Was ist der Unterschied zwischen einem Web Server und einen Reverse Proxy?
+               - Ein Webserver stellt HTML seiten direkt bereit. Der Reverse Proxy ist nur Vermittler von einem Webserver oder so
+        
+            -Was verstehen wir unter einer "White List"?
+                -Eine Liste mit Elementen z.B. Servern denen man vertauen kann
+        
+            -Was wäre die Alternative zum Absichern der einzelnen Server mit einer Firewall?
+                -Eine Firewall für alle
+        
+        SSH    
+            
+            -Was ist der Unterschied zwischen der id_rsa und id_rsa.pub Datei?
+                -Der id_rsa ist der Privat Key und der id_rsa.pub ist ein Public Key
+        
+            -Wo darf ein SSH Tunnel nicht angewendet werden?
+                -In einer Firma
+
+            -Für was dient die Datei authorized_keys?
+                -Es beinhaltet alle Public Keys der Leute die ohne Passwort auf das System dürfen.
+
+            -Für was dient die Datei known_hosts?
+                -Das ist eine Liste von Systemen an denen ich mich schon einmal mit SSH angemeldet habe.
