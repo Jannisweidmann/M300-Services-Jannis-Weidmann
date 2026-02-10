@@ -40,7 +40,7 @@ Dokumentation Modul 300
         vollständig löschen. Mithilfe von Provisioning wurde der Apache-Webserver automatisch installiert und im Browser unter
         http://127.0.0.1:8080
         getestet.
-![Apache](Apache.png)
+![Apache](Apache_Web.png)
 
         Zum Abschluss habe ich Visual Studio Code als Entwicklungsumgebung installiert.
         Ich habe die benötigten Extensions für Markdown, Vagrant und PDF hinzugefügt, das Git-Repository geöffnet,
@@ -208,12 +208,12 @@ Dokumentation Modul 300
                 cd M300
                 vagrant init ubuntu/xenial64
                 vagrant up
-![VM-erstellen](VM-Erstellen.png)
+![VM_erstellen](VM_Erstellen.png)
 
         -VM mit SSH verbinden
             -folgenden Command eingeben um per SSH auf den Server zu kommen
                 -vagrant ssh
-![VM-SSH](VM-SSH.png)
+![VM_SSH](VM_SSH.png)
 
         -Serverdienste auswählen
             -zuerst muss der Server die Paketquellen von Ubuntu aktualisieren
@@ -221,9 +221,9 @@ Dokumentation Modul 300
             -Danach muss Apache und Webalyzer installiert werden mit folgenden Commands
                 -sudo apt-get install -y apache2
                 -sudo apt-get install -y webalizer 
-![Update-und-Apache](Apache-Update.png) 
-![Webalizer](Webalizer.png)
+![Update-und-Apache](Apache_Update.png) 
+![Webalizer](Webalizer_install.png)
            
             -Danach kann man mit history sehen welche Commands bisher eingegeben wurden.
-![History](history.png)
+![History](History.png)
             
