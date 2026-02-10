@@ -1,8 +1,57 @@
 Dokumentation Modul 300
 
+10 Toolumgebung
+    1. Readme
+        Zuerst habe ich einen GitHub-Account erstellt und ein öffentliches Repository angelegt. Zur sicheren Authentifizierung habe ich lokal einen SSH-Schlüssel mit
+        ssh-keygen -t rsa -b 4096 -C "email@beispiel.ch"
+        erstellt und den öffentlichen Schlüssel mit
+        cat ~/.ssh/id_rsa.pub
+        in meinem GitHub-Account hinterlegt.
+
+        Anschliessend habe ich Git Bash installiert und Git mit meinen Benutzerdaten konfiguriert:
+        git config --global user.name "username"
+        git config --global user.email "email@beispiel.ch".
+        Danach habe ich das Repository lokal geklont mit
+        git clone git@github.com:<username>/<repository>.git.
+        Änderungen habe ich mit
+        git add -A,
+        git commit -m "Kommentar"
+        und
+        git push
+        in das GitHub-Repository hochgeladen.
+
+        Danach habe ich VirtualBox installiert und eine Ubuntu-VM manuell erstellt. Das System habe ich mit
+        sudo apt-get update
+        sudo apt-get upgrade
+        aktualisiert und neu gestartet. Anschliessend habe ich den Apache-Webserver mit
+        sudo apt-get install apache2
+        installiert und dessen Funktion im Browser unter
+        http://127.0.0.1
+        überprüft.
+
+        Im nächsten Schritt habe ich Vagrant installiert, um virtuelle Maschinen automatisiert bereitzustellen. Ich habe eine VM mit
+        vagrant init ubuntu/xenial64
+        initialisiert und mit
+            vagrant up
+        gestartet. Der Zugriff auf die VM erfolgte über
+        vagrant ssh.
+        Die VM konnte ich mit
+        vagrant halt
+        stoppen oder mit
+        vagrant destroy -f
+        vollständig löschen. Mithilfe von Provisioning wurde der Apache-Webserver automatisch installiert und im Browser unter
+        http://127.0.0.1:8080
+        getestet.
+
+        Zum Abschluss habe ich Visual Studio Code als Entwicklungsumgebung installiert.
+        Ich habe die benötigten Extensions für Markdown, Vagrant und PDF hinzugefügt, das Git-Repository geöffnet,
+        Dateien bearbeitet und Änderungen direkt aus Visual Studio Code oder über das Terminal mit Git committet und gepusht.
+        VM-spezifische Ordner wie .vagrant habe ich in den Einstellungen ausgeschlossen, damit sie nicht ins Repository hochgeladen werden.
+
+
 20 Infrastruktur
 
-    1. Read me
+    1. Readme
         Arten von CLoud Computing:
             -IaaS: Infrastructur as a Service ist wenn man seine VMs und Infrastruktur selber managed.
             -PaaS: Platform as a Service ist wenn man die Maschine schon hat aber die Applikationen selber mitbringt.
@@ -10,7 +59,8 @@ Dokumentation Modul 300
             -CaaS: Container as a Service ist wenn man Container in der Cloud benutzt.
 
         Dynamic Infrastructur-Platform:   
-            -Dynamic Infrastructur-Platform ist ein Service der Rechen-ressourcen virtuell bereitstellt. Z.B. CPU, Storage, networks und sie werden als VM dargestellt
+            -Dynamic Infrastructur-Platform ist ein Service der Rechen-ressourcen virtuell bereitstellt und als VM dargestellt werden.
+                -Z.B. CPU, Storage, networks 
             -Damit Infrastructur as Code funktionieren kann müssen folgende Anforderungen erfüllt werden: 
                 -Porgrammierbar (API)
                 -On demand (schnell ressourcen erstellen und löschen)
@@ -32,13 +82,34 @@ Dokumentation Modul 300
                 -Hyper-V
                 -VMware Player
             -Hyperkonvergente Systeme
-                -Rechner die die oben beschriebenen Eigenschaften in einer Hardware vereinen
+                -Rechner die die oben beschriebenen Eigenschaften in einer Hardware vereinen    
 
         Infrastructur as Code
-            IaC ist ein Paradigma (grundsätzliche Denkweise) zur Infrastruktur-automatisierung. 
-            Das heisst dass man konsistente und wiederholbare bereitstellung in Dateien zusammenfässt die man dann immer wieder ausrollen kann
-
-
+            -IaC ist ein Paradigma (grundsätzliche Denkweise) zur Infrastruktur-automatisierung. 
+            -Das heisst Infrastruktur wird konsistent, versioniert, getestet und automatisch ausgerollt.
+            -Die Ziele von IaC sind:
+                -Schnelle, sichere und wiederholbare Änderungen
+                -Weniger manuelle Routinearbeit
+                -Selbstständige Ressourcenerstellung
+                -Schnelle Wiederherstellung bei Ausfällen
+                -Kontinuierliche Verbesserung
+            -Arten von Tools für IaC
+                -Infrastructur Definition Tools
+                    - Bereitstellung und Konfiguration einer Sammlung von Ressourcen
+                    - Openstack, Terraform, Cloudformation
+                -Server Configuration Tools
+                    -Bereitstellung und Konfiguration von Servern
+                    -Vagrant, Packer, Docker
+                -Package Management Tools
+                    -Bereitstellung und Verteilung von vorkonfigurierter Software
+                    -APT, YUM, WiX, SBT native packager
+                -Scripting Tools
+                    -Komandozeileninpreter kurz CLI
+                    -Bash, Powershell
+                -Versionverwaltung und Hubs
+                    -Versionskontrolle von Definitionsdateien und Ablage für Images
+                    -Github, Vagrant Boxes, Docker Hub, Windows VM
+            
 
     2. Fragen
      1. Was versteht man unter Cloud-Computing? 
