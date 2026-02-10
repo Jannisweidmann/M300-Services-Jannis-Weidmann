@@ -36,12 +36,11 @@ Dokumentation Modul 300
         gestartet. Der Zugriff auf die VM erfolgte über
         vagrant ssh.
         Die VM konnte ich mit
-        vagrant halt
-        stoppen oder mit
         vagrant destroy -f
         vollständig löschen. Mithilfe von Provisioning wurde der Apache-Webserver automatisch installiert und im Browser unter
         http://127.0.0.1:8080
         getestet.
+![Apache](Apache.png)
 
         Zum Abschluss habe ich Visual Studio Code als Entwicklungsumgebung installiert.
         Ich habe die benötigten Extensions für Markdown, Vagrant und PDF hinzugefügt, das Git-Repository geöffnet,
@@ -110,34 +109,121 @@ Dokumentation Modul 300
                     -Versionskontrolle von Definitionsdateien und Ablage für Images
                     -Github, Vagrant Boxes, Docker Hub, Windows VM
             
+        Vagrant
+            -Zentrale Befehle
+                -vagrant init, Initialisiert Vagrantfile
+                -vagrant up, Erstellt und startet VM
+                -vagrant ssh, SSH-Zugriff auf VM
+                -vagrant status, Status der VM anzeigen
+                -vagrant port, Weitergeleitete Ports anzeigen
+                -vagrant halt, VM stoppen
+                -vagrant destroy -f, VM löschen
+ 
+            -Konfiguration (Vagrantfile)
+                -Vagrant.configure("2") do |config|
+                -config.vm.box = "bento/ubuntu-16.04"
+                -config.vm.hostname = "srv-web"
+                -config.vm.network :forwarded_port, guest: 80, host: 4567
+                -end
+ 
+            -Provisioning
+                -Automatisierte Konfiguration der VM
+                -Über Shell, Bash
+                    -config.vm.provision :shell, inline: <<-SHELL
+                    -sudo apt-get update
+                    -sudo apt-get -y install apache2
+                    -SHELL
+ 
+            -Provider
+                -Definiert die Plattformen
+                    -config.vm.provider "virtualbox" do |vb|
+                    -vb.memory = "512"
+                    -end
+ 
+            -Workflow
+                -WM erstellen
+                    -mkdir myserver
+                    -cd myserver
+                    -vagrant init ubuntu/xenial64
+                    -vagrant up
+                -WM aktualisieren
+                    -vagrant provision
+                    -# oder
+                    -vagrant destroy -f
+                    -vagrant up
+                -VM löschen
+                    -vagrant destroy -f
+       
+            -Synced Folders
+                -Gemeinsamer Ordner zwischen Host und VM
+                    -config.vm.synced_folder ".", "/var/www/html"
+
+        -Reflexion
+            -Cloud Computing ist Programme auf einem anderen Rechner aus der Ferne aus aufzurufen
+            -DIP sind die Rechner die die Ressourcen bereitstellen für Cloud Computing
+            -IaC funktioniert nur wenn folgende Anforderungen erfüllt sind:
+                -Programmierbar
+                -On-Demand
+                -Self-Service
+                -Portabel
+                -Sicherheitsanforderungen    
 
     2. Fragen
-     1. Was versteht man unter Cloud-Computing? 
+        1. Was versteht man unter Cloud-Computing? 
                 Wenn man Programme und Virtuelle Maschinen nicht auf dem lokalen Rechner installiert hat sondern auf einem anderen auf den vom lokalen Rechner zugegriffen wird.
 
-     2. Was versteht man unter IaaS? 
+        2. Was versteht man unter IaaS? 
                 IaaS ist wenn man als User schon vorhandene Dienste in einem System verwaltet aber immer noch für die Virtuellen Maschinen selbst zuständig ist.
    
-     3. Was ist der Unterschied zwischen Infrastructur as Code und der manuellen Installation der VM? 
+        3. Was ist der Unterschied zwischen Infrastructur as Code und der manuellen Installation der VM? 
                 Es ist automatisiert und kann beliebig wiederholt werden. Ausserdem ist es besser Dokumentiert.
    
-     4. Was wird mit Vagrant erzeugt?
+        4. Was wird mit Vagrant erzeugt?
                 VMs
    
-     5. Welche Aussage stimmt? 
+        5. Welche Aussage stimmt? 
                 b) --> Vagrant erstellt virtuelle Maschinen, dabei werden mehrere HyperVisor und Cloud Umgebungen unterstützt.
    
-     6. In welchen Bereich der Cloud Computing ist Vagrant einzuordnen? 
+        6. In welchen Bereich der Cloud Computing ist Vagrant einzuordnen? 
                 IaaS weil es VMs managed
    
-     7. Welche Alternativen zu Vagrant gibt es? 
+        7. Welche Alternativen zu Vagrant gibt es? 
                 Lima, Packer Multipass oder virt-manager
   
-     8. Wo speichert Vagrant seine Konfiguration? 
+        8.  Wo speichert Vagrant seine Konfiguration? 
                 Vagrantfile
     
-     9. Was bedeutet die Fehlermeldung "A Vagrant environment or target machine is required to run this command."? 
+        9.  Was bedeutet die Fehlermeldung "A Vagrant environment or target machine is required to run this command."? 
                 Dass in dem Verzeichnis in dem du bist keine VM ist.
   
-     10. Bei welcher LPI Zertifizierung nützt mir das Vagrant Wissen? 
+        10. Bei welcher LPI Zertifizierung nützt mir das Vagrant Wissen? 
                 Für diverse Zeritfikate für Linux Dev
+
+
+    3. LB2.md
+        -VM erstellen
+            -folgende Commands ausführen um VM zu erstellen
+                cd VM
+                mkdir M300
+                cd M300
+                vagrant init ubuntu/xenial64
+                vagrant up
+![VM-erstellen](VM-Erstellen.png)
+
+        -VM mit SSH verbinden
+            -folgenden Command eingeben um per SSH auf den Server zu kommen
+                -vagrant ssh
+![VM-SSH](VM-SSH.png)
+
+        -Serverdienste auswählen
+            -zuerst muss der Server die Paketquellen von Ubuntu aktualisieren
+                -sudo apt-get update
+            -Danach muss Apache und Webalyzer installiert werden mit folgenden Commands
+                -sudo apt-get install -y apache2
+                -sudo apt-get install -y webalizer 
+![Update-und-Apache](Apache-Update.png) 
+![Webalizer](Webalizer.png)
+           
+            -Danach kann man mit history sehen welche Commands bisher eingegeben wurden.
+![History](history.png)
+            
