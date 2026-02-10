@@ -226,4 +226,3 @@ Dokumentation Modul 300
            
             -Danach kann man mit history sehen welche Commands bisher eingegeben wurden.
 ![History](History.png)
-            
