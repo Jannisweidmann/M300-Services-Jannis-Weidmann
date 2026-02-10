@@ -316,4 +316,4 @@ Dokumentation Modul 300
 
             - Danach habe ich noch den Apache2 Service neu gestartet mit dem folgenden Command:
               - sudo service apache2 restart
-            - 
+             
