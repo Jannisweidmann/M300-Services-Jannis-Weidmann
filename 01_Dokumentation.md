@@ -244,6 +244,9 @@ Dokumentation Modul 300
             -Und zum nochmal testen führe ich nochmal den folgenden Command aus
                 -vagrant port
 ![Vagrantfile_Reload](Vagrantfile_reload.png)
+            
+            -Und mit Localhost:8080/webalizer kommt man dann auf die Webalizer Website
+![Webalizer_Webansicht](Webalizer_Webansicht.png)
 
 
 25 Sicherheit
@@ -273,3 +276,44 @@ Dokumentation Modul 300
 
             -Für was dient die Datei known_hosts?
                 -Das ist eine Liste von Systemen an denen ich mich schon einmal mit SSH angemeldet habe.
+    
+    2. Readme
+        -Installation Firewall
+            -Als erstes habe ich mit dem folgenden Command die offenen Ports angeschaut
+                -Netstat -tulpen
+![Netstat-tulpen](Netstat-tulpen.png)
+
+            -Danach habe ich die Installation gestartet mit dem folgenden Command
+                -sudo apt-get install ufw
+![Firewall_installation](Firewall_installation.png)
+
+            -Danach kann ich die Firewall mit status auslesen ob sie an oder aus ist und mit enable/ disable an oder ausschalten
+                -sudo ufw status
+                -sudo ufw enable
+                -sudo ufw disable
+![Firewall_starten](Firewall_starten.png)
+
+            -Danach bearbeite ich die Firewallregeln mit folgenden Commands:
+                -vagrant ssh
+                -sudo ufw allow 80/tcp
+                -exit
+
+                -vagrant ssh
+                -sudo ufw allow from 192.168.178.87 to any port 22
+![Firwall_rules](Firewall_Rules.png)
+
+        -Installation Reverse Proxy
+            -Zuerst habe ich die zwei benötigen Module mit den folgenden Commands heruntergeladen
+                -sudo apt-get install libapache2-mod-proxy-html
+                -sudo apt-get install libxml2-dev
+![Module_Reverse_Proxy](Module_Reverse_Proxy.png)
+
+            -Danach habe ich die Module aktualisiert mit den folgenden Commands
+                -sudo a2enmod proxy
+                -sudo a2enmod proxy_html
+                -sudo a2enmod proxy_http
+![Module_aktivieren](Module_aktivieren.png)     
+
+            - Danach habe ich noch den Apache2 Service neu gestartet mit dem folgenden Command:
+              - sudo service apache2 restart
+            - 
