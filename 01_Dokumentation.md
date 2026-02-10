@@ -225,4 +225,4 @@ Dokumentation Modul 300
 ![Webalizer](Webalizer_install.png)
            
             -Danach kann man mit history sehen welche Commands bisher eingegeben wurden.
-![History](History.png)
+![History](History_.png)
