@@ -860,3 +860,153 @@ http://(http://127.0.0.1/):8080
 - Danach erscheint Apache auf der Website
 
 ![Docker_Website](Bilder/Docker_Website.png)
+
+---
+
+# 35 Sicherheit  
+# Readme
+## Protokolieren und Überwachen
+
+### Bedeutung
+- Wichtig für Debugging von komplexeren Systemen
+- Besonders wichtig für Microservices
+- Zentrale Logs wegen kurzlebigen Container
+
+---
+
+### Logging
+#### Standard: nur STDOUT und STDERR in Docker Logs
+#### Methoden per --logdriver
+- json-file --> Einfache Ausgaben, Standard
+- syslog --> Syslog-Treiber vom Host
+- none --> Beenden von Protokolierung
+
+---
+
+## Überwachen und Benachrichtigen
+Gibt Überblick über Ressouccen (CPU, RAM, Speicher...)
+Ermöglicht frühzeitige Warnungen bei Problemen
+Tool: Google cAdvisor --> Container-based, mit Web-UI (Port 8080)
+Starten von cAdvisor mit folgendem Command
+
+```bash
+docker run -d --name cadvisor -v /:/rootfs:ro -v /var/run:/var/run:rw -v /sys:/sys:ro -v /var/lib/docker/:/var/lib/docker:ro -p 8080:8080 google/cadvisor:latest
+```
+
+---
+
+## Container sichern und Beschränken
+### Sicherheitsrisiken:
+- Kernel Exploits (durch gemeinsamer Kernel)
+- Dos-Angriffe (Durch anspruch einer Ressourcce für sich alleine)
+- Container-breakouts (meist durch Fehler im Anwendungscode)
+- Vergiftete Images (Durch vorgefertigte Images)
+- Geheimnisse geleaked (Zugriffe auf API-Keys oder Passwörter oder so)
+### Effektives Prinzip
+Least Privilege (Alles was nötig ist aber so wenig wie möglich)
+
+---
+
+### Wichtige Massnahmen
+- Nicht als root laufen lassen
+- Eigener User im Dockerfile
+- Images verifizieren (per Hash)
+- Nur die nötigste Ports öffnen
+- Einziger Öffentlicher Zugriff Reverse Proxy
+- Immer aktuellste Software nutzen
+- Debug Modus deaktivieren
+- AppArmor / SELinux aktivieren
+- Secrets schützen (Passwörter, API-Keys)
+- Regelmässige Audits  
+
+---
+
+### Ressourcen beschränken
+- Speicher begrenzen mit `-m`
+- CPU gewichtiung mit `-c`
+- Restart Limits setzen mit `--restart=on-failure`
+- Read-Only Filesysteme machen mit `--read-only`
+- Capabilities einschränken mit `--cap-drop`
+- Auf die Prozesse grenze für den User sezten mit `ulimit`
+
+---
+
+### Wichtige Tipps
+- Docker Zugriff --> Root zugriff auf Host
+- Docker API absichern
+- Multitenancy --> getrennte Hosts
+- User mit weniger Berechtigungen erstellen
+- Netzwerkzugriff beschränken
+- setuid und setgid entfernen (meist nicht genutzt)
+- Ressourcen einschränken (wie oben gesagt)
+
+---
+
+## Kontinuierliche Integration
+
+### Ziel
+- Automatisiert Bauen und Testen
+- Qualität steigern
+
+### Grundsätze
+- Gemeinsame Codebasis
+- Automatisiert builden
+- Automatisiert testen
+- Häufige Integration
+- Produktsnahe Umgebung
+- Automatisiertes Reporting
+
+### CI Tools
+#### Travis CI 
+- Cloud based
+- GitHub integration
+#### Jenkins
+- Open Source CI-Server
+#### Blue Ocean
+- Moderne Jenkins-Oberfläche
+- Docker-based installation möglich
+
+### CI mit Docker
+- Pipeline via Jenkinsfile
+- Automatisierter Build
+- Automatisierte Tests
+- Automatisierte Docker-Image-erstellung
+- Images prüfen mit `docker image ls`
+- Anwendung testen mit `docker run`
+
+# Fragen
+
+### Warum sollten Container überwacht werden?
+- Damit Ressourcenüberlastung und Fehler frühzeitig erkannt werden
+
+### Was ist das syslog und wo ist es zu finden?
+- Das Logsystem eines Linux Hosts. --> Im verzeichnis var/log.
+
+### Was ist stdout, stderr, stdin?
+- Standard Output, Standard Error ausgabe, Standard Input eingabe
+
+### Wie kann `docker run -v /:/homeroot -it ubuntu bash` durch Normale User verhindert werden?
+- Wenn nur `root` den Container starten kann
+
+### Wie können verschiedene Mandanten getrennt werden?
+- Mit VMs
+
+### Wie kann der Ressourcenverbrauch von Containern eingeschränkt werden?
+```bash
+--cpus=<value>
+--cpu-period=<value>
+--cpu-quota=<value>
+--cpuset-cpus
+--cpu-shares
+docker run -it --cpus=".5" ubuntu /bin/bash
+docker run -it --cpu-period=100000 --cpu-quota=50000 ubuntu /bin/bash
+```
+
+### Welche Funktionen kann Jenkins übernehmen?
+- CI, Modultests, Software bauen, Batch Jobs ausführen 
+
+### Wie baut man Modultests?
+- Via Bash Scripts
+
+### Wie anders, als Manuell oder Zeitgesteuert könnten Jenkins Jobs auch gestartet werden?
+- Mit Änderungen im Git Repository
