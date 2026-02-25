@@ -1,6 +1,37 @@
 
 ---
 
+# Inhaltsverzeichnis
+
+- [10 Toolumgebung](#10-toolumgebung)
+    - [1. Readme](#1-readme)
+- [20 Infrastruktur](#20-infrastruktur)
+    - [1. Readme](#1-readme-1)
+    - [2. Fragen](#2-fragen)
+    - [3. LB2.md](#3-lb2md)
+- [25 Sicherheit](#25-sicherheit)
+    - [1. Fragen](#1-fragen)
+    - [2. Readme](#2-readme)
+- [30 Container](#30-container)
+    - [Fragen.md](#fragenmd)
+    - [Readme](#readme)
+    - [LB3](#lb3)
+- [35 Sicherheit](#35-sicherheit)
+    - [Readme](#readme-1)
+    - [Fragen](#fragen)
+- [40 Kubernetes](#40-kubernetes)
+    - [Readme](#readme-2)
+    - [Fragen](#fragen-1)
+- [50 Projekt](#50-projekt)
+    - [Beschreibung](#beschreibung)
+    - [Erstellung](#erstellung)
+    - [Verzeichnis erstellen](#verzeichnis-erstellen)
+    - [Troubleshoot Metrics](#troubleshoot-metrics)
+    - [Dashboard erstellen](#dashboard-erstellen)
+    - [Mehrspieler Testen](#mehrspieler-testen)
+
+---
+
 # Dokumentation Modul 300
 
 
@@ -63,26 +94,26 @@ VM-spezifische Ordner wie .vagrant habe ich in den Einstellungen ausgeschlossen,
 # 20 Infrastruktur
 
 # 1. Readme
-Arten von CLoud Computing:  
-`-IaaS:` Infrastructur as a Service ist wenn man seine VMs und Infrastruktur selber managed.  
-`-PaaS:` Platform as a Service ist wenn man die Maschine schon hat aber die Applikationen selber mitbringt.  
-`-SaaS:` Software as a Service ist wenn man nicht mal die Applikation selber mitbringt sondern auch diese schon aus der Cloud nimmt.  
-`-CaaS:` Container as a Service ist wenn man Container in der Cloud benutzt.  
+Arten von Cloud Computing:  
+`-IaaS:` Infrastructure as a Service ist, wenn man seine VMs und Infrastruktur selber managed.  
+`-PaaS:` Platform as a Service ist, wenn man die Maschine schon hat aber die Applikationen selber mitbringt.  
+`-SaaS:` Software as a Service ist, wenn man nicht mal die Applikation selber mitbringt sondern auch diese schon aus der Cloud nimmt.  
+`-CaaS:` Container as a Service ist, wenn man Container in der Cloud benutzt.  
 
 ---
 
-## Dynamic Infrastructur-Platform:   
-Dynamic Infrastructur-Platform ist ein Service der Rechen-ressourcen virtuell bereitstellt und als VM dargestellt werden.  
+## Dynamic Infrastructure-Platform:   
+Dynamic Infrastructure-Platform ist ein Service der Rechenressourcen virtuell bereitstellt und als VM dargestellt werden.  
 Z.B. CPU, Storage, networks   
-Damit Infrastructur as Code funktionieren kann müssen folgende Anforderungen erfüllt werden:  
-- Porgrammierbar (API)  
+Damit Infrastructure as Code funktionieren kann müssen folgende Anforderungen erfüllt werden:  
+- Programmierbar (API)  
 - On demand (schnell ressourcen erstellen und löschen)  
 - Selfservice (Ressourcen anpassen können)  
 - Anbieter flexibel wechseln (AWS, Azure...)   
 
 ---
 
-## Besispiele dafür sind:  
+## Beispiele dafür sind:  
 ### Public Cloud:   
 - AWS  
 - Azure  
@@ -102,7 +133,7 @@ Damit Infrastructur as Code funktionieren kann müssen folgende Anforderungen er
 
 ---
 
-## Infrastructur as Code  
+## Infrastructure as Code  
 - IaC ist ein Paradigma (grundsätzliche Denkweise) zur Infrastruktur-automatisierung.   
 - Das heisst Infrastruktur wird konsistent, versioniert, getestet und automatisch ausgerollt.  
 ### Die Ziele von IaC sind:  
@@ -112,7 +143,7 @@ Damit Infrastructur as Code funktionieren kann müssen folgende Anforderungen er
 - Schnelle Wiederherstellung bei Ausfällen  
 - Kontinuierliche Verbesserung  
 ### Arten von Tools für IaC  
-#### Infrastructur Definition Tools  
+#### Infrastructure Definition Tools  
 - Bereitstellung und Konfiguration einer Sammlung von Ressourcen  
 - Openstack, Terraform, Cloudformation  
 #### Server Configuration Tools  
@@ -122,7 +153,7 @@ Damit Infrastructur as Code funktionieren kann müssen folgende Anforderungen er
 - Bereitstellung und Verteilung von vorkonfigurierter Software  
 - APT, YUM, WiX, SBT native packager  
 #### Scripting Tools  
-- Komandozeileninpreter kurz CLI  
+- Kommandozeileninterpreter kurz CLI  
 - Bash, Powershell  
 #### Versionverwaltung und Hubs  
 - Versionskontrolle von Definitionsdateien und Ablage für Images  
@@ -134,13 +165,13 @@ Damit Infrastructur as Code funktionieren kann müssen folgende Anforderungen er
 ### Zentrale Befehle  
 
 ```bash
-vagrant init #Initialisiert Vagrantfile
-vagrant up #Erstellt und startet VM
-vagrant ssh #SSH-Zugriff auf VM
-vagrant status #Status der VM anzeigen
-vagrant port #Weitergeleitete Ports anzeigen
-vagrant halt #VM stoppen
-vagrant destroy -f #VM löschen
+vagrant init 
+vagrant up 
+vagrant ssh 
+vagrant status 
+vagrant port 
+vagrant halt 
+vagrant destroy -f 
 ```  
  
 ### Konfiguration (Vagrantfile)  
@@ -157,7 +188,7 @@ end
 - Automatisierte Konfiguration der VM  
 - Über Shell, Bash  
 ```bash
-config.vm.provision :shell, inline: #<<-SHELL
+config.vm.provision :shell, inline: 
 sudo apt-get update
 sudo apt-get -y install apache2
 ```  
@@ -173,14 +204,14 @@ end
 ---
 
 ## Workflow  
-### WM erstellen  
+### VM erstellen  
 ```bash
 mkdir myserver
 cd myserver
 vagrant init ubuntu/xenial64
 vagrant up
 ```  
-### WM aktualisieren  
+### VM aktualisieren  
 ```bash
 vagrant provision
 # oder
@@ -213,12 +244,12 @@ config.vm.synced_folder ".", "/var/www/html"
 
 # 2. Fragen
 ### Was versteht man unter Cloud-Computing?
-- Wenn man Programme und Virtuelle Maschinen nicht auf dem lokalen Rechner installiert hat sondern auf einem anderen auf den vom lokalen Rechner zugegriffen wird.  
+- Wenn man Programme und Virtuelle Maschinen nicht auf dem lokalen Rechner installiert hat sondern auf einem anderen auf den vom lokalen Rechner aus zugegriffen wird.  
 
 ### Was versteht man unter IaaS?
 - IaaS ist wenn man als User schon vorhandene Dienste in einem System verwaltet aber immer noch für die Virtuellen Maschinen selbst zuständig ist.  
    
-### Was ist der Unterschied zwischen Infrastructur as Code und der manuellen Installation der VM?
+### Was ist der Unterschied zwischen Infrastructure as Code und der manuellen Installation der VM?
 - Es ist automatisiert und kann beliebig wiederholt werden. Ausserdem ist es besser Dokumentiert.  
    
 ### Was wird mit Vagrant erzeugt?
@@ -240,7 +271,7 @@ config.vm.synced_folder ".", "/var/www/html"
 - Dass in dem Verzeichnis in dem du bist keine VM ist.  
   
 ### Bei welcher LPI Zertifizierung nützt mir das Vagrant Wissen?
-- Für diverse Zeritfikate für Linux Dev  
+- Für diverse Zertifikate für Linux Dev  
 
 ---
 
@@ -277,7 +308,7 @@ sudo apt-get update
 sudo apt-get install -y apache2
 sudo apt-get install -y webalizer 
 ```
-![Update-und-Apache](Bilder/Apache_Update.png) 
+![Update_und_Apache](Bilder/Apache_Update.png) 
 ![Webalizer](Bilder/Webalizer_install.png)
            
 - Danach kann man mit history sehen welche Commands bisher eingegeben wurden.  
@@ -289,7 +320,7 @@ vagrant port
 ```
 ![Port_SSH](Bilder/Port_SSH.png)
             
-- Man kann hier sehen dass nur der SSH Port fregegeben ist  
+- Man kann hier sehen dass nur der SSH Port freigegeben ist  
 - Das heisst dass ich jetzt noch den Port 80 für Apache freigeben muss.  
 - Mit dem folgenden Command öffnet sich das Vagrantfile im VS Code und ich kann es ersetzen.     
 ```bash
@@ -320,11 +351,11 @@ vagrant port
         
 ## Firewall und Reverse Proxy  
 
-### Was ist der Unterschied zwischen einem Web Server und einen Reverse Proxy?
+### Was ist der Unterschied zwischen einem Webserver und einen Reverse Proxy?
 - Ein Webserver stellt HTML seiten direkt bereit. Der Reverse Proxy ist nur Vermittler von einem Webserver oder so  
         
 ### Was verstehen wir unter einer "White List"?
-- Eine Liste mit Elementen z.B. Servern denen man vertauen kann  
+- Eine Liste mit Elementen z.B. Servern denen man vertrauen kann  
         
 ### Was wäre die Alternative zum Absichern der einzelnen Server mit einer Firewall?
 - Eine Firewall für alle  
@@ -334,7 +365,7 @@ vagrant port
 ## SSH  
             
 ### Was ist der Unterschied zwischen der id_rsa und id_rsa.pub Datei?
-- Der id_rsa ist der Privat Key und der id_rsa.pub ist ein Public Key  
+- Der id_rsa ist der Private Key und der id_rsa.pub ist ein Public Key  
         
 ### Wo darf ein SSH Tunnel nicht angewendet werden?
 - In einer Firma  
@@ -361,7 +392,7 @@ sudo apt-get install ufw
 ```  
 ![Firewall_installation](Bilder/Firewall_installation.png)
 
-- Danach kann ich die Firewall mit status auslesen ob sie an oder aus ist und mit enable/ disable an oder ausschalten  
+- Danach kann ich die Firewall mit status auslesen, ob sie an oder aus ist und mit enable/ disable an oder ausschalten  
 ```bash
 sudo ufw status
 sudo ufw enable
@@ -376,12 +407,12 @@ sudo ufw allow 80/tcp
 sudo ufw allow from 192.168.178.87 to any port 22
 ```  
 
-![Firwall_rules](Bilder/Firewall_Rules.png)
+![Firewall_rules](Bilder/Firewall_Rules.png)
 
 ---
 
 # Installation Reverse Proxy
-- Zuerst habe ich die zwei benötigen Module mit den folgenden Commands heruntergeladen
+- Zuerst habe ich die zwei benötigten Module mit den folgenden Commands heruntergeladen
 ```bash
 sudo apt-get install libapache2-mod-proxy-html
 sudo apt-get install libxml2-dev
@@ -414,7 +445,7 @@ sudo service apache2 restart
 ### Was ist der Unterschied zwischen Vagrant und Docker?
 - Vagrant ist IaaS und Docker PaaS
  
-### Welches Tools aus dem Docker Universum ist Vergleichbar mit Vagrant?
+### Welches Tool aus dem Docker Universum ist Vergleichbar mit Vagrant?
 - Docker Machine
  
 ### Was macht der Docker Provisioner von Vagrant?
@@ -429,7 +460,7 @@ sudo service apache2 restart
 ### Welches sind die drei Hauptmerkmale (abgeleitet vom Ur-Unix) von Microservices?
 - Eine Aufgabe pro Porgramm
 - Zusammenarbeit zwischen Programmen
-- Eine Universielle Schnistelle
+- Eine Universelle Schnittstelle
  
 ---
  
@@ -445,7 +476,7 @@ sudo service apache2 restart
 -Docker Inspect, Docker-logs
  
 ### Was ist der Unterschied zwischen einer Docker Registry und einem Repository
-- Das Registry speichert Images und das Repository die verschieden Versionen vom Image
+- Das Registry speichert Images und das Repository die verschiedenen Versionen vom Image
  
 ### Wie erstelle ich ein Container Image
 - Docker build
@@ -477,7 +508,7 @@ sudo service apache2 restart
 - Eigentlich alle Cloud-Anbieter stellen heutzutage ein Container Registry zu verfügung
  
 ### Warum sollte eine eigene Docker Registry im Unternehmen verwendet werden?
-- alle Images sind zentral übereacht, gleiche Quelle, Sicherheit  
+- alle Images sind zentral überwacht, gleiche Quelle, Sicherheit  
  
 ### Warum sollten Versionen tag von Images immer angegeben werden?
 - Damit nicht immer das neueste verwendet wird
@@ -648,7 +679,7 @@ docker top
 ```  
 
 #### Docker build
-- Baut Images aus einem Dockefile  
+- Baut Images aus einem Dockerfile  
 ```bash  
 docker build -t mysql .   
 ```
@@ -710,7 +741,7 @@ docker tag image username/image
 ```  
 - wichtig für sauberen Entwicklungs-Workflow  
 ##### Regeln für Tags:  
-- Bustaben und Zahlen und . und -   
+- Buchstaben und Zahlen und . und -   
 - max 128 Zeichen  
 - nicht starten mit . oder -  
 
@@ -808,7 +839,7 @@ sudo systemctl status docker
 ---
 
 ### Dockerfile erstellen
-- Im normalen Dash den folgenden Code eingeben und in die Datei die sich geöffnet hat den vorgegebenen code kopieren.
+- Im normalen Dash den folgenden Code eingeben und in die Datei, die sich geöffnet hat den vorgegebenen code kopieren.
 ```bash
 code Dockerfile
 ```
@@ -821,7 +852,7 @@ docker build -t apache -image .
 - Allerdings hat das nicht ganz funktioniert und es kam folgende Fehlermeldung  
 ![Docker_problem](Bilder/Docker_Problem.png)
 
-- Ich habe dann herausgefunden dass ich in der VM noch ein Dockerfile und ein htmlfile bearbeiten muss. Mit den folgenden Commands kann ich sie bearbeiten
+- Ich habe dann herausgefunden dass ich in der VM noch ein Dockerfile und ein HTML-file bearbeiten muss. Mit den folgenden Commands kann ich sie bearbeiten
 ```bash
 nano dockerfile
 nano index.html
@@ -865,7 +896,7 @@ http://(http://127.0.0.1/):8080
 
 # 35 Sicherheit  
 # Readme
-## Protokolieren und Überwachen
+## Protokollieren und Überwachen
 
 ### Bedeutung
 - Wichtig für Debugging von komplexeren Systemen
@@ -879,19 +910,26 @@ http://(http://127.0.0.1/):8080
 #### Methoden per --logdriver
 - json-file --> Einfache Ausgaben, Standard
 - syslog --> Syslog-Treiber vom Host
-- none --> Beenden von Protokolierung
+- none --> Beenden von Protokollierung
+
+Ich habe es kurz ausprobiert mit den folgenden Commands.  
+![Logging](Bilder/Logging.png)
 
 ---
 
 ## Überwachen und Benachrichtigen
-Gibt Überblick über Ressouccen (CPU, RAM, Speicher...)
+Gibt Überblick über Ressourcen (CPU, RAM, Speicher...)
 Ermöglicht frühzeitige Warnungen bei Problemen
 Tool: Google cAdvisor --> Container-based, mit Web-UI (Port 8080)
 Starten von cAdvisor mit folgendem Command
 
 ```bash
 docker run -d --name cadvisor -v /:/rootfs:ro -v /var/run:/var/run:rw -v /sys:/sys:ro -v /var/lib/docker/:/var/lib/docker:ro -p 8080:8080 google/cadvisor:latest
-```
+```  
+![cAdvisor_code](Bilder/cAdvisor_code.png)
+
+
+
 
 ---
 
@@ -901,7 +939,7 @@ docker run -d --name cadvisor -v /:/rootfs:ro -v /var/run:/var/run:rw -v /sys:/s
 - Dos-Angriffe (Durch anspruch einer Ressourcce für sich alleine)
 - Container-breakouts (meist durch Fehler im Anwendungscode)
 - Vergiftete Images (Durch vorgefertigte Images)
-- Geheimnisse geleaked (Zugriffe auf API-Keys oder Passwörter oder so)
+- Geheimnisse geleakt (Zugriffe auf API-Keys oder Passwörter oder so)
 ### Effektives Prinzip
 Least Privilege (Alles was nötig ist aber so wenig wie möglich)
 
@@ -911,8 +949,8 @@ Least Privilege (Alles was nötig ist aber so wenig wie möglich)
 - Nicht als root laufen lassen
 - Eigener User im Dockerfile
 - Images verifizieren (per Hash)
-- Nur die nötigste Ports öffnen
-- Einziger Öffentlicher Zugriff Reverse Proxy
+- Nur die nötigsten Ports öffnen
+- Einziger öffentlicher Zugriff Reverse Proxy
 - Immer aktuellste Software nutzen
 - Debug Modus deaktivieren
 - AppArmor / SELinux aktivieren
@@ -927,7 +965,7 @@ Least Privilege (Alles was nötig ist aber so wenig wie möglich)
 - Restart Limits setzen mit `--restart=on-failure`
 - Read-Only Filesysteme machen mit `--read-only`
 - Capabilities einschränken mit `--cap-drop`
-- Auf die Prozesse grenze für den User sezten mit `ulimit`
+- Auf die Prozesse grenzen für den User setzen mit `ulimit`
 
 ---
 
@@ -1010,3 +1048,608 @@ docker run -it --cpu-period=100000 --cpu-quota=50000 ubuntu /bin/bash
 
 ### Wie anders, als Manuell oder Zeitgesteuert könnten Jenkins Jobs auch gestartet werden?
 - Mit Änderungen im Git Repository
+
+---
+
+# 40 Kubernetes
+# Readme
+## Grundbegriffe
+### Service Discovery
+#### Definition:
+Prozess um Verbindungsinfos einer Service-Instanz zu erhalten
+
+#### Herausforderung:
+Komplex in verteilten Systemen wegen dynamischen starten/ stoppen von Instanzen
+
+#### Funktionsweise:
+Client fordert Service an --> Backend sendet verfügbare Daten
+
+#### Vernetzung:
+Fokus auf verknüpfen von Containern (vor allem bei Webservern)
+
+#### Zusatzfunktionen:
+Health Checking, Failover, Load Balancing, Verschlüsselung und Gruppen-Isolierung
+
+### Lastverteilung
+#### Zweck:
+Verteilung von umfangreichen berechtigungen oder hoher Anfragemengen auf mehrere parallel arbeitende Systeme.  
+
+#### Nutzen:
+Überwinden von Kapazitätsgrenzen bei einzelnen Hosts.  
+
+#### Fokus:
+Gezieltes Verteilen von anfragen an verschiedene Container-Instanzen.  
+
+### Cluster
+#### Definition:
+Rechenverbund aus vielen vernetzten Computern.  
+
+#### Ziele:
+- Erhöhung der Rechenkapazität
+- Erhöhung der Verfügbarkeit
+
+## Kubernetes
+### Allgemeines
+#### Definition
+Open-Source-System zum Automatisieren von Bereitstellungen, Skalierung und Verwaltung von Container Anwendungen.  
+
+#### Ursprung
+Ursprünglich von Google, jetzt von Cloud Native Computing Foundation.  
+
+#### Support
+Unterstützt verschiedene Container Tools und Cloud Plattformen.  
+
+### Merkmale
+#### Immutable Infrastructure:
+Unveränderliche statt veränderlichen Systeme.  
+
+#### Deklarativ:
+Zielzustand wird definiert, nicht die einzelnen Ausführungsschritte.  
+
+#### Self Healing:
+Automatische Neustarts bei Abstürzen.  
+
+#### Skalierbarkeit:
+Anpassung der Instanzzahl durch einfache Änderung der Deklaration.  
+
+#### Abstraktion:
+Denken in Anwendungen und Services statt in physischen Rechnern oder technischer Infrastruktur.  
+
+### Objekte
+#### Pod:
+Kleinste Einheit; Gruppe von Containern und Volumes in einer gemeinsamen Umgebung.  
+
+#### ReplicaSet:
+Garantiert, dass die definierte Anzahl an Pod-Kopien dauerhaft läuft.  
+
+#### Deployment:
+Erlaubt deklarierte Updates von Pods.  
+
+#### Service:
+Bietet stabilen Zugriff auf Pods auch wenn diese ersetzt werden.  
+
+#### Ingress:
+Fungiert als Reverse Proxy und ermöglicht den Zugriff auf Services via URL.  
+
+---
+
+# Fragen
+## Kubernetes
+### Was ist Kubernetes?
+Die derzeit populärste Container-Cluster-Lösung/ Orchestrierungs-Lösung
+
+### Was ist die Hauptaufgabe von Kubernetes?
+Die Verwaltung und Orchestrierung der Container innerhalb eines Clusters
+
+### Wer ist der Eigentümer von Kubernetes?
+Die Cloud Native Computing Foundation
+
+### Was für eine Netzwerkstruktur verwendet Kubernetes?
+Sehr flach. jeder Container kann mit allen anderen reden, Jeder Node kann mit allen Container reden und das alles ohne NAT
+
+### Über was Kommunizieren die Services von Nodes zu Nodes
+Über ein Overlay Netzwerk
+
+## Objekte
+### Kubernetes Objekte (Ressourcen) werden im welchen Dateiformat beschrieben?
+YAML
+
+### Kubernetes Objekte (Ressourcen) können mittels Dashboard und welche CLI Tool verwaltet werden?
+kubectl
+
+### Mit was lassen sich Kubernetes Objekte (Ressourcen) gruppieren?
+Labels
+
+### Was sind Pods?
+Kleine Gruppe eng verbundener Container
+
+### Was sind Services?
+Eine Gruppe von Pods die zusammenarbeiten, Gruppiert mittels Label Selector
+
+### Was ein Ingress?
+Ein API-Objekt, das den externen Zugriff auf die Dienste in einem Cluster verwaltet
+
+### Was sind Namespaces bzw. deren Aufgabe?
+Sie Unterteilen den gesamten K8s Cluster in logische Partitionen
+
+### Was ist die Aufgabe eines ReplicaSets?
+Stellt sicher, dass N Pods laufen sind es zu wenig, werden neue gestartet, sind es zu viele werden Pods beendet, gruppiert durch den Label Selector
+
+### Für was können Deployments verwendet werden?
+Ermöglichen Deklarative Updates von Container Images in Pods.
+
+---
+
+# KS8
+
+## Kubernetes auf Docker installieren
+Bei Settings auf Kubernetes und enable Kubernetes drücken. Den Haken bei Show system Containers (advanced) setzen.
+![Kubernetes_installieren](Bilder/Kubernetes_installieren.png)
+
+Und im Terminal mit `Kubectl version` schauen ob es installiert wurde.
+
+Danach ein Kubernetes erstellen mit`kubectl create namespace m300`  
+
+![Kubernetes_erstellen](Bilder/Kubernetes_erstellen.png)
+ Und mit `kubectl run apache --image=httpd --restart=Never -n m300` den Apache Webserver starten  
+
+![Kubernetes](Bilder/Kubernetes.png)
+
+Und mit `kubectl get pods -n m300` testen und mit `kubectl expose pod apache --type=NodePort --port=80 -n test` den Service Starten
+
+![Service_starten](Bilder/Service_starten.png)
+
+Und mit `kubectl get svc -n m300` den Port herausfinden und mit localhost:30523 darauf verbinden
+![it_works](Bilder/it_works.png)
+
+Nun speichere ich mit den zwei folgenden Commands die Beschreibung für die laufenden Apache Pods und für den Netzwerkzugriff.  
+![Daten_Speichern](Bilder/Daten_Speichern.png)
+
+Danach um das ganze zu testen lösche ich all die Dateien die ich gerade gemacht habe mit dem folgenden Command  
+```bash
+kubectl delete namespace m300
+```
+
+Danach bereinige ich die apache-pod.yaml und schreibe nur das folgende rein.  
+```bash
+apiVersion: v1
+kind: Pod
+metadata:
+  name: apache
+  labels:
+    run: apache 
+spec:
+  containers:
+  - name: apache
+    image: httpd
+    imagePullPolicy: Always
+  restartPolicy: Never
+```
+
+In die apache-service.yaml schreibe ich das folgende rein.  
+```bash
+apiVersion: v1
+kind: Service
+metadata:
+  name: apache
+  labels:
+    run: apache
+spec:
+  type: NodePort
+  selector:
+    run: apache 
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30523 
+```
+
+Danach mache ich wieder einen neuen namespace und darin alles wieder neu mit den Dateien mit den folgenden Commands.  
+```bash
+kubectl create namespace m300
+
+kubectl apply -f . -n m300
+```
+
+![Kubernetes_automatisch](Bilder/Kubernetes_Automatisch.png)
+
+Dann kann ich auf localhost::30523 gehen und bin wieder auf der Apache Seite
+
+---
+
+# 50 Projekt
+# Beschreibung
+Ich mache als Projekt einen Minecraft Server und dazu möchte ich ein Dashboard machen in dem man sehen kann welcher Spieler wie oft gestorben ist.
+
+---
+
+# Erstellung
+- Neues Verzeichnis erstellen 
+- darin das vorgegebene compose.yaml abspeichern 
+- Server erstellen und Starten
+
+![Minecraftserver_erstellen](Bilder/Minecraftserver_erstellen.png)
+
+- Neue Minecraftinstanz im Launcher machen und starten.  
+![Minecraftinstanz](Bilder/Minecraftinstanz.png)
+
+In Minecraft neuen Server mit localhost:25565 hinzufügen
+Auf den Server joinen    
+![Minecraftserver_hinzufügen](Bilder/Minecraftserver_hinzufügen.png)
+
+---
+
+# Verzeichnis erstellen
+Neue Ordner erstellen für die Plugins zum Auslesen der Daten  
+![Minecraft_Verzeichnis](Bilder/Minecraft_Verzeichnis.png)
+
+Im Ordner Prometheus eine Datei prometheus.yml machen mit den folgenden Inhalten
+```bash
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'minecraft'
+    static_configs:
+      - targets: ['mc:18080']
+```
+und im Ordner grafana ein Ordner dashboards erstellen.
+
+Das Plugin Prometheus Exporter herunterladen und in den Ordner Plugins legen. 
+Die Compose.yml wie folgt anpassen  
+```bash
+services:
+  mc:
+    image: itzg/minecraft-server:latest
+    container_name: mc_server
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      TYPE: "PAPER"
+    volumes:
+      - ./data:/data
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=Bananen123.
+```
+Um das Dashboard zu machen auf localhost:3000 gehen
+Dann kommst du auf die Seite von Grafana  
+![Grafana_Startseite](Bilder/Minecraft_Dashboard_Startseite.png)
+
+Unter Connections eine neue Data source hinzufügen und prometheus auswählen
+Dann bei Prometheus Server URL http://prometheus:9090 eingeben und unten speichern  
+![Dashboard_Prometheus_verbinden](Bilder/Dashboard_prometheus_verbinden.png)
+
+Das macht dass man Daten von Prometheus ziehen kann.
+Danach kann man ein neues Dashboard machen und eine Visualizion machen.
+![Dashboard_erstellen_1](Bilder/Dashboard_erstellen_1.png)
+
+---
+
+# Troubleshoot Metrics
+
+Als Datasource Prometheus auswählen und dann kann man metrics von da ziehen und Darstellen.  
+Bei mir hat das allerdings nicht funktioniert. Ich konnte keine metrics auswählen.  
+Nach kurzem Recherchieren fand ich heraus dass ich einen metrics daten exporter brauche.  
+Ich habe mich für Prometheus exporter entschieden.  
+Dieses herunterladen und in Plugins Ordner ziehen.
+![Prometheus_exporter_herunterladen](Bilder/Prometheus_exporter_herunterladen.png)
+
+Danach den Server neu starten. Der Server hat jetzt einen Ordner erstellt in den ich den Libs Ordner in diesen Ordner reingezogen.  
+Danach habe ich es wieder versucht aber ich konnte immer noch keine Metrics ziehen.   
+Auf localhost:9090 --> Prometheus steht bei Target immer down obwohl der Server eingeschaltet ist.  
+--> Der Server kann von Prometheus nicht ausgelesen werden.  
+Nach kurzem Recherchieren habe ich mal eine neue Ordnerstruktur angewendet wie folgt
+![Minecraft_Prometheus_verzeichnis](Bilder/Minecraft_Prometheus_verzeichnis.png)
+
+Im prometheus.yml habe ich den folgenden Code geschrieben:  
+
+```bash
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: "minecraft"
+    static_configs:
+      - targets: ["mc:18080"]
+```  
+Das heisst dass es alle 5 sekunden ein Update holt, der Job Minecraft heisst und es über den Port 18080 zugreifen soll.  
+Das Compose.yml habe ich wie folgt angepasst um den Port 18080 zu öffnen:
+
+```bash
+services:
+  mc:
+    image: itzg/minecraft-server:latest
+    pull_policy: daily
+    tty: true
+    stdin_open: true
+    ports:
+      - "25565:25565"
+      - "18080:18080"
+    environment:
+      EULA: "TRUE"
+      TYPE: "PAPER"
+    volumes:
+      - ./data:/data
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - mc
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana:/var/lib/grafana
+    depends_on:
+      - prometheus
+```
+Danach den Server wieder aufstarten
+Nachdem ich die Logs angeschaut habe habe ich etwas gemerkt:  
+
+`mc-1 | [10:08:56 INFO]: [spark] This server bundles the spark profiler. For more information please visit`  
+Dass das Plugin Spark welches ich verwenden wollte neu schon integriert ist in Minecraft Paper Servern.  
+Der Server sollte jetzt einen Ordner erstellt haben für Spark. Das hat dieser allerdings nicht gemacht.  
+Also habe ich den Server gestoppt und den Ordner manuell erstellt in data --> config --> spark --> config.conf  
+Und in diese Datei den folgenden Code geschrieben:
+```bash
+metrics {
+  enabled = true
+  type = prometheus
+  address = 0.0.0.0
+  port = 18080
+}
+```
+
+Danach den Server wieder starten und versuchen auf localhost:18080 zu gehen.
+Das hat allerdings nicht funktioniert und die Seite hat nicht geladen.
+![Website_nicht_geladen](Bilder/Website_nicht_geladen.png)
+
+Das heisst dass das Plugin Spark zwar funktioniert aber der Web/Metrics-Server dazu nicht.  
+Um diesen Webserver zu starten habe ich in der Datei paper-global.yml folgenden Text in den block Spark reinkopiert:
+```bash
+spark:
+  enabled: true
+  profiler:
+    enabled: true
+  web-server:
+    enabled: true
+    bind-address: 0.0.0.0
+    port: 18080
+```
+Das definiert noch dass der Webserver an ist, dass man von überall drauf kann und zwar über Port 18080.  
+Allerdings hat das wieder nicht funktioniert. Der Webserver blieb unerreichbar. 
+Nach kurzer Recherche habe ich herausgefunden dass diese Schreibweise veraltet ist und ich die folgenden benutzen muss.
+```bash
+metrics:
+  enabled: true
+  endpoint:
+    enabled: true
+    bind-address: 0.0.0.0
+    port: 18080
+```
+Allerdings ist auch das leider wieder veraltet und ich musste nach einer anderen Lösung suchen. 
+Ich habe keine andere Lösung gefunden also habe ich mich entschieden es nochmal mit Prometheus Exporter zu probieren.  
+Ich habe es nochmal neu heruntergeladen und in den Ordner Plugins verschoben.  
+Danach habe ich das prometheus.yml wie folgt angepasst.
+```bash
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'minecraft'
+    static_configs:
+      - targets: ['mc:18080']
+```
+Und das Compose.yml mit dem folgenden überschrieben:
+```bash
+services:
+  mc:
+    image: itzg/minecraft-server:latest
+    container_name: mc
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      TYPE: "PAPER"
+    volumes:
+      - ./data:/data
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin 
+```
+Danach habe ich mich wieder auf Grafana verbunden und Prometheus verbunden.
+nach kurzem Recherchieren sollte ich einen Ordner Prometheus_Exporter im Plugin ordner finden, welcher nicht vorhanden war.  
+Das Problem war dass ich für mein Plugin einen Unterordner erstellt habe mit den anderen Dateien die ich dazu bekommen habe.  
+Ich habe diesen direkt in den Plugins Ordner verschoben und den Server neu gestartet. 
+Dann war der Ordner endlich vorhanden und ich habe den Libs Ordner da rein verschieben können und die Datei config.yml wie folgt anpassen
+```bash
+port: 18080
+enable_node_exporter: true
+enable_connection_exporter: true
+```
+Danach habe ich mich wieder auf Prometheus verbunden. Aber der Server stand da immer noch auf Down. 
+Ich habe in allen Dateien nochmal die Ports überprüft und mich versucht auf localhost:18080/metrics zu verbinden.  
+Aber ich bekomme immer noch keine verbindung.  
+Da es nicht funktioniert habe ich es mal mit dem Port 9225 probiert.  
+Aber das hat auch nichts gebracht.  Ich habe anscheinend eine alte version von PrometheusExporter gehabt.  
+Ich habe aber keine neuere gefunden also habe ich mit UnifiedMetrics weitergemacht.   
+Ich habe die .jar Datei heruntergeladen und in Plugins kopiert.  
+Allerdings hat es hier auch keinen Ordner erstellt mit der config.yml. Stellt sich raus die Datei ist nur für bis und mit 1.19.4.  
+Ich habe aber die 1.21.10 genutzt. Also habe ich den Server down gegradet.  
+Dafür musste ich den config, World und einige andere Ordner löschen damit nichts mit der neuen Version übrig bleibt.  
+Dann habe ich den Server neu gestartet.  
+Dann ist die config.yml erschienen und ich habe sie im Block Prometheus wie folgt angepasst.
+```bash
+api:
+  host: 0.0.0.0
+  port: 18080
+
+drivers:
+  prometheus:
+    enabled: true
+```
+Die Datei speichern und bei den anderen Dateien alle Ports wieder auf 18080 zurückstellen den Server neu starten.  
+Auf localhost:18080/metrics verbinden versuchen. Das hat allerdings auch nichts gebracht.  
+Danach habe ich mit `docker exec -it mc curl http://localhost:18080/metrics` prüfen wollen ob der Port wirklich offen ist.  
+Allerdings hat es den command curl nicht erkannt.  
+Das hat nachdem ich von der latest version auf java21 umgestellt habe auch funktioniert. 
+Allerdings hat es trotzdem keine verbindung gegeben.  
+Danach habe ich mit `docker exec -it mc netstat -tulpn` geschaut welche Port alle offen sind.  
+![Ports_offen](Bilder/Ports_offen.png)
+Da trotzdem alles wieder nicht funktioniert hat, habe ich gedacht dass mit Java21 vielleicht spark funktioniert. 
+Also habe ich die .jar Datei von Spark heruntergeladen und in den Ordner Plugins gelegt.  
+nach einem Neustart ist der Ordner Spark erschienen in dem ich die Datei config.json wie folgt angepasst.  
+```bash
+{
+  "_header": "spark configuration file - https://spark.lucko.me/docs/Configuration",
+  "backgroundProfiler": true,
+  "prometheus-exporter": {
+    "enabled": true,
+    "host": "0.0.0.0",
+    "port": 18080
+  }
+}
+```
+Diese Datei speichern und Server neu starten. Allerdings war danach der Port 18080 immer noch nicht geöffnet.  
+Es liest also die Datei nicht richtig oder es wird immer wieder überschrieben.  
+Ich habe nochmal alles möglich versucht allerdings wollte der Port 18080 einfach nicht aufgehen. 
+Also habe ich alles gelöscht und nochmal ganz von vorne begonnen.
+Ich habe erst mal eine neue Ordnerstruktur gemacht.  
+![Minecraft_Verzeichnis](Bilder/Minecraft_Verzeichnis_2.png)
+Danach habe ich ein neues docker-compose.yml gemacht mit folgenden Inhalten  
+```bash
+services:
+  mc:
+    image: itzg/minecraft-server
+    container_name: mc-server
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      TYPE: "PAPER" 
+      MEMORY: "2G"
+      PLUGINS: "https://github.com/sladkoff/minecraft-prometheus-exporter/releases/download/v2.3.0/minecraft-prometheus-exporter-2.3.0.jar"
+    volumes:
+      - ./mc-data:/data
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - ./grafana-data:/var/lib/grafana
+    restart: unless-stopped
+```
+In Prometheus habe ich die Datei prometheus.yml mit folgenden Inhalt gemacht.
+```bash
+global:
+  scrape_interval: 5s 
+
+scrape_configs:
+  - job_name: 'minecraft'
+    static_configs:
+      - targets: ['mc:8000']
+```
+Danach habe ich den Server gestartet und mich auf localhost:3000 verbunden und Prometheus mit Grafana verbunden.  
+Das hat funktioniert aber bei Prometheus hat es den Server immer noch als down angegeben.  
+Also habe ich mit `docker logs mc-server | Select-String "Prometheus"` alle logs von Prometheus angeschaut.
+Da habe ich festgestellt dass ich durch die Einstellungen wahrscheinlich nur von localhost drauf komme.  
+Da ich abe nicht im Container bin geht das nicht also habe ich folgende Zeilen im Config.yml hinzugefügt.  
+```bash
+host: 0.0.0.0
+port: 9225
+```
+Die Datei gespeichert und den Server neu starten und im prometheus.yml den Port auf 9225 ändern.  
+Danach mit `docker restart prometheus` nur Prometheus neu starten und kurz warten bis alles gestartet ist.  
+Danach kann ich auf localhost:9090/targets den Server sehen und er ist Up.  
+
+---
+
+# Dashboard erstellen
+
+Jetzt kann ich bei Grafana beginnen das Dashboard zu gestalten.  
+Ich mache 4 Panels mit TPS, Anzahl an Spieler Online pro Dimension, Anzahl Tode pro Spieler, und benutzte RAM vom Server.  
+Für das erste Panel mit TPS wähle ich bei metrics mc_tps und stelle es als Gauge dar.
+Für das Panel mit Spieler Online wähle ich mc_player_online_total und stelle es auch als Stats dar.
+Für das Panel mit Anzahl an spieler muss ich erstmal noch im PrometheusExporter config.xml diese Einstellungen ergänzen.  
+```bash
+enable_node_exporter: true
+enable_connection_exporter: true
+collect_player_statistics: true
+```
+Dann kann ich code auswählen und `mc_player_statistic{statistic="DEATHS"}`eingeben um die Tode anzuzeigen, und zeige es als Bar Chart an.  
+Für das Panel mit RAM gehe ich auf code und geben `mc_jvm_memory{type="allocated"} - on() mc_jvm_memory{type="free"}` ein.  
+Das rechnet die reservierten RAM minus den freien RAM um den benutzten zu bekommen. Das stelle ich als Stat dar.
+Danach mache ich noch ein paar Einstellungen um alles etwas besser aussehen zu lassen.   
+![Dashboard_2](Bilder/Dashboard_2.png)  
+Am Ende ist die Theorie dahinter etwa das.  
+![Infrastruktur_mcserver](Bilder/Infrastruktur_mcserver.png)
+
+---
+
+# Mehrspieler Testen
+
+Um das mit verschiedenen Spieler zu testen habe ich ein Tunnel erstellt.  
+Dafür habe ich Playit.gg genutzt. 
+Auf der Website playit.gg anmelden und `neuen Agent machen` ausählen
+Die Datei herunterladen und ausführen. Durchklicken und danach die Applikation Playit.gg ausführen.  
+Sich auf die angegebene Website verbinden und warten bis der Agent authentifiziert wurde.  
+![Playit.gg_Agent](Bilder/Playit.gg_Agent.png)
+
+Auf der Playit.gg Website ein neues Tunnel machen und durchklicken.  
+![Playit.gg_Tunnel](Bilder/Playit.gg_Tunnel.png)
+
+Der angegebene Link kopieren und an Mitspieler weitergeben
+Dieser trägt ihn bei Neuer Server unter IP ein. Dann kann er joinen.  
+
